@@ -16,13 +16,15 @@ def main():
     running = True
     clock_object = pygame.time.Clock()
     dt = 0
+
+    player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
     while running:
         for event in pygame.event.get():
             # check for quit event
             if event.type == pygame.QUIT:
                 running = False
         
-        player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+        
 
 
         screen.fill((0, 0, 0))  # fill screen with black
