@@ -17,16 +17,19 @@ def main():
     clock_object = pygame.time.Clock()
     dt = 0
 
-    player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
-    
+    # Create sprite groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    
-    updatable.add(player_object)
-    drawable.add(player_object)
-    
-    Player.containers = (updatable, drawable)
 
+    # Set the Player class containers
+    Player.containers = (updatable, drawable)
+    #kinda same as the line below:
+    #updatable.add(player_object)
+    #drawable.add(player_object)
+    
+    # Create a Player instance (it will automatically add itself to the groups)
+    player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+    
     print(len(drawable))
     print(type(drawable.sprites()))
     
