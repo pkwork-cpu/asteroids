@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import *
 
 
 def main():
@@ -20,12 +21,16 @@ def main():
             # check for quit event
             if event.type == pygame.QUIT:
                 running = False
+        
+        player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+
 
         screen.fill((0, 0, 0))  # fill screen with black
+        player_object.draw(screen)
+        
         pygame.display.flip()   # update the display
         dt = clock_object.tick(60) # limit the frame rate to 60 FPS pause the game loop until 1/60th of a second has passed
         dt = dt / 1000 # convert from milliseconds to seconds
-        print (dt)
     print("Exiting Asteroids!")
     pygame.quit()
 
