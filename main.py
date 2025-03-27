@@ -18,6 +18,18 @@ def main():
     dt = 0
 
     player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+    
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    
+    updatable.add(player_object)
+    drawable.add(player_object)
+    
+    Player.containers = (updatable, drawable)
+
+    print(len(drawable))
+    print(type(drawable.sprites()))
+    
     while running:
         for event in pygame.event.get():
             # check for quit event
@@ -29,9 +41,15 @@ def main():
 
         screen.fill((0, 0, 0))  # fill screen with black
         
-        player_object.update(dt)
-        player_object.draw(screen)
         
+        
+        updatable.update(dt)
+        for draw in drawable:
+            draw.draw(screen)
+        #player_object.update(dt)
+        #player_object.draw(screen)
+
+
         pygame.display.flip()   # update the display
         dt = clock_object.tick(60) # limit the frame rate to 60 FPS pause the game loop until 1/60th of a second has passed
         dt = dt / 1000 # convert from milliseconds to seconds
