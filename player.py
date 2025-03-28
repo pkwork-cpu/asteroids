@@ -16,7 +16,8 @@ class Player(CircleShape):
     
     def draw(self, screen):
         pygame.draw.polygon(screen, (255, 255, 255), self.triangle(), 2)
-        
+        #hitbox
+        pygame.draw.circle(screen, "red", self.position, self.radius, 2)
     def rotate(self, dt):
         self.rotation += dt * PLAYER_TURN_SPEED
     
@@ -35,8 +36,6 @@ class Player(CircleShape):
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
-
-
 
 
 

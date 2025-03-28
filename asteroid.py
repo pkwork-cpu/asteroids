@@ -11,5 +11,4 @@ class Asteroid(CircleShape):
         def update(self, dt):
                 # Move the asteroid in a random direction 
                 self.position += self.velocity * dt
-                print (self.velocity)
 
