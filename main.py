@@ -4,7 +4,8 @@
 import pygame
 from constants import *
 from player import *
-
+from asteroid import *
+from asteroidfield import *
 
 def main():
     pygame.init()
@@ -17,41 +18,42 @@ def main():
     clock_object = pygame.time.Clock()
     dt = 0
 
-    # Create sprite groups
+    # Create 2 sprite groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     # Set the Player class containers
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
     #kinda same as the line below:
     #updatable.add(player_object)
     #drawable.add(player_object)
     
     # Create a Player instance (it will automatically add itself to the groups)
     player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
-    
-    print(len(drawable))
-    print(type(drawable.sprites()))
+    #asteroid_object = Asteroid((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2), ASTEROID_MIN_RADIUS)
+    AstroidField_object = AsteroidField()
     
     while running:
         for event in pygame.event.get():
-            # check for quit event
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT: # check for quit event
                 running = False
         
-        
-
-
-        screen.fill((0, 0, 0))  # fill screen with black
-        
-        
-        
+        #use group instead of individual objects
+        #example:
+        #player_object.update(dt)
         updatable.update(dt)
+
+        screen.fill("black")  # fill screen with black
+        
+        #use group instead of individual objects
+        #example:
+        #player_object.draw(screen)
         for draw in drawable:
             draw.draw(screen)
-        #player_object.update(dt)
-        #player_object.draw(screen)
-
+        
 
         pygame.display.flip()   # update the display
         dt = clock_object.tick(60) # limit the frame rate to 60 FPS pause the game loop until 1/60th of a second has passed
