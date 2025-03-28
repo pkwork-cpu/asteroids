@@ -22,11 +22,12 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
-    
+    shots = pygame.sprite.Group()
     # Set the Player class containers
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers = (shots, updatable, drawable)
     #kinda same as the line below:
     #updatable.add(player_object)
     #drawable.add(player_object)
