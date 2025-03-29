@@ -61,6 +61,10 @@ def main():
         for astroid in asteroids:
             if astroid.has_collided(player_object):
                 sys.exit("Game Over!")
+            for shot in shots:
+                if astroid.has_collided(shot):
+                    astroid.kill()
+                    shot.kill()
 
         pygame.display.flip()   # update the display
         dt = clock_object.tick(60) # limit the frame rate to 60 FPS pause the game loop until 1/60th of a second has passed
